@@ -6,7 +6,7 @@ from scoreboard import add_player_name
 def get_coordinates():
 
     while True:
-        coordinates = input("Enter row column: ('ex: 0 0'): ").split()
+        coordinates = input("Enter row and column: ('ex: 0 0'): ").split()
 
         if len(coordinates) == 2:
             row, column = coordinates
@@ -41,7 +41,7 @@ def play_game():
         row, column = get_coordinates()
         action = get_action()
 
-        cell = board.board[row][column]
+        cell = board.board[column][row]
 
         if action == "r":
             if cell.flagged:
