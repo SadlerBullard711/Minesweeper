@@ -1,8 +1,10 @@
-import play, scoreboard
+from play import play_game
+from scoreboard import get_top_scores, setup_database
+
 
 def main():
 
-    scoreboard.setup_database()
+    setup_database()
 
     #Give the player the choice to play, view scoreboad, or quit.
     print("Welcome to Minesweeper!")
@@ -12,7 +14,7 @@ def main():
 
         action = input("> ")
         action = action.lower()
-        
+
         actions = ["play", "scoreboard", "quit"]
 
         #check for bad inputs.
@@ -22,11 +24,11 @@ def main():
 
         #if the player chooses to Play, run the game.
         if action == actions[0]:
-            play.play_game()
+            play_game()
 
         #else if the player chooses to view the scoreboad, view the scoreboard.
         elif action == actions[1]:
-            scoreboard.get_top_scores
+            get_top_scores()
 
         #else quite the game.
         elif action == actions[2]:
