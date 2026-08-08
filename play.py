@@ -3,17 +3,16 @@ from gameboard import Board
 from scoreboard import add_player_name 
 
 
-def get_coordinates(): # 
+def get_coordinates():
 
     while True:
-        row = input("Enter row (0-9): ")
-        column = input("Enter column (0-9): ")
+        row, column = input("Enter row and column (0-9): ").split()
 
         if row.isdigit() and column.isdigit():
             row = int(row)
             column = int(column)
 
-            if 0 <= row <= 9 and 0<= column <= 9:
+            if 0 <= row <= 9 and 0 <= column <= 9:
                 return row, column
 
             print("Invalid coordinates. Please enter numbers from 0-9.")
