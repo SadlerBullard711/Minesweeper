@@ -23,7 +23,7 @@ class Board:
         mines = 0
         mines_max = len(self.board[0]) * len(self.board[0])
         #mines_num is the number of mines to place.
-        mines_num = 15
+        mines_num = 1
         #if the set number of mines is greater than spaces on the board, shrink the number of mines.
         if mines_num > mines_max:
             mines_num = mines_max
@@ -97,8 +97,71 @@ class Board:
                     new_row += "| |  "
             print("")
             print(new_row)
-                
 
+def reveal_adjacent(board: Board, coordinate): #coordinate is a list [row, column]
+    if (coordinate[0] != 0) and (coordinate[1] != 0):
+        top_left = board.board[coordinate[0] - 1][coordinate[1] - 1]
+        if not top_left.revealed:
+            top_left.reveal()
+            if top_left.number == 0:
+                new_coordinate = [coordinate[0] - 1, coordinate[1] - 1]
+                reveal_adjacent(board, new_coordinate)
+
+    if (coordinate[0] != 0) and (coordinate[1] != board.size - 1):
+        top_right = board.board[coordinate[0] - 1][coordinate[1] + 1]
+        if top_right.revealed:
+            top_right.reveal()
+            if top_right.number == 0:
+                new_coordinate = [coordinate[0] - 1, coordinate[1] + 1]
+                reveal_adjacent(board, new_coordinate)
+
+    if (coordinate[0] != 0):
+        top_middle = board.board[coordinate[0] - 1][coordinate[1]]
+        if top_middle.revealed:
+            top_middle.reveal()
+            if top_middle.number == 0:
+                new_coordinate = [coordinate[0] - 1, coordinate[1]]
+                reveal_adjacent(board, new_coordinate)
+            
+    if (coordinate[0] != board.size - 1) and (coordinate[1] != 0):
+        bottom_left = board.board[coordinate[0] + 1][coordinate[1] - 1]
+        if bottom_left.revealed:
+            bottom_left.reveal()
+            if bottom_left.number == 0:
+                new_coordinate = [coordinate[0] + 1, coordinate[1] - 1]
+                reveal_adjacent(board, new_coordinate)
+            
+    if (coordinate[0] != board.size - 1) and (coordinate[1] != board.size -1):
+        bottom_right = board.board[coordinate[0] + 1][coordinate[1] + 1]
+        if bottom_right.revealed:
+            bottom_right.reveal()
+            if bottom_right.number == 0:
+                new_coordinate = [coordinate[0] + 1, coordinate[1] + 1]
+                reveal_adjacent(board, new_coordinate)
+
+    if (coordinate[0] != board.size - 1):
+        bottom_middle = board.board[coordinate[0] + 1][coordinate[1]]
+        if bottom_middle.revealed:
+            bottom_middle.reveal()
+            if bottom_middle.number == 0:
+                new_coordinate = [coordinate[0] + 1, coordinate[1]]
+                reveal_adjacent(board, new_coordinate)
+
+    if (coordinate[1] != 0):
+        middle_left = board.board[coordinate[0]][coordinate[1] - 1]
+        if middle_left.revealed:
+            middle_left.reveal()
+            if middle_left.number == 0:
+                new_coordinate = [coordinate[0] + 1, coordinate[1] - 1]
+                reveal_adjacent(board, new_coordinate)
+
+    if (coordinate[1] != board.size - 1):
+        middle_right = board.board[coordinate[0]][coordinate[1] + 1]
+        if middle_right.revealed:
+            middle_right.reveal()
+            if middle_right.number == 0:
+                new_coordinate = [coordinate[0] + 1, coordinate[1] - 1]
+                reveal_adjacent(board, new_coordinate)
 
 
 class Cell:
