@@ -8,7 +8,7 @@ def get_coordinates():
 
         if row.isdigit() and column.isdigit():
             row = int(row)
-            columnn = int(column)
+            column = int(column)
 
             if 0 <= row <= 9 and 0<= column <= 9:
                 return row, column
@@ -59,7 +59,7 @@ def play_game():
 
                 player_name = input("Enter your name: ")
 
-                #add_player_score(player_name, player_score)
+                add_player_score(player_name, player_score)
 
                 break
         elif action == "f":
