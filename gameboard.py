@@ -48,7 +48,6 @@ class Board:
                     #update the mine list so mines are not placed on that spot again.
                     self.mine_list.append(coordinate)
                     #add the mine to the cell.number of adjacent cells.
-                    print(coordinate)
                     if (coordinate[0] != 0) and (coordinate[1] != 0):
                         top_left = self.board[coordinate[0] - 1][coordinate[1] - 1]
                         top_left.add_number()
@@ -118,7 +117,3 @@ class Cell:
 
     def add_number(self):
         self.number += 1
-
-
-board = Board()
-board.draw_board()
