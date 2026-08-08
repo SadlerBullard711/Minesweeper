@@ -23,7 +23,7 @@ class Board:
         mines = 0
         mines_max = len(self.board[0]) * len(self.board[0])
         #mines_num is the number of mines to place.
-        mines_num = 20
+        mines_num = 15
         #if the set number of mines is greater than spaces on the board, shrink the number of mines.
         if mines_num > mines_max:
             mines_num = mines_max
@@ -91,7 +91,7 @@ class Board:
                         new_row += f"|{cell.number}|  "
                 #If the cell is flagged, show a flag (?)
                 elif cell.flagged:
-                    new_row += "|(?)|  "
+                    new_row += "|?|  "
                 #If cell in not revealed or flagged, show nothing.
                 else:
                     new_row += "| |  "
