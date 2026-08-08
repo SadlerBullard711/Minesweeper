@@ -109,6 +109,7 @@ class Cell:
     def reveal(self, board: Board):
         board.unrevealed -= 1
         self.revealed = True
+        print(board.unrevealed)
 
     def toggle_flag(self):
         self.flagged = not self.flagged
