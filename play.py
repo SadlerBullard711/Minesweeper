@@ -2,6 +2,8 @@ import time
 from gameboard import *
 from scoreboard import * 
 
+setup_database()
+
 def get_coordinates(): # 
 
     while True:

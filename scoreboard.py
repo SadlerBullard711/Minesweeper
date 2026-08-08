@@ -17,10 +17,11 @@ def add_player_name(player_name, player_score): #should allow the user to input 
     connection = sqlite3.connect("Scoreboard.db")
     cursor = connection.cursor()
     
-    cursor.execute
-    insert_query = "INSERT INTO Scoreboard (player_name, player_score) VALUES(?, ?)",
-    (player_name, player_score)
-    
+    cursor.execute(
+        "INSERT INTO Scoreboard (player_name, player_score) VALUES(?, ?)",
+        (player_name, player_score)
+    )
+
     connection.commit()
     connection.close()
     
