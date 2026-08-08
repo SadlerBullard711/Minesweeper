@@ -7,8 +7,27 @@ def setup_database(): #sets up my database, Kat
                 CREATE TABLE IF NOT EXISTS Scoreboard (
                     player_name TEXT, 
                     player_score INTEGER
-                    )               
+                    );               
                 """)
+    cursor.execute("""
+                    INSERT or IGNORE INTO Scoreboard (player_name, player_score)
+                    VALUES('KJK', 12),
+                    ('V', 277),
+                    ('King of Pop', 350),
+                    ('Perfect Cell', 1000),
+                    ('Tarnished', 1),
+                    ('The World', 999),
+                    ('Marco', 500),
+                    ('Mississippi', 480),
+                    ('Jason', 130),
+                    ('Melly', 772);  
+                   """)
+    cursor.execute("""
+                    SELECT * 
+                    FROM Scoreboard
+                    ORDER BY player_score
+                    DESC; 
+                   """)
     
     connection.commit()
     connection.close()
@@ -34,24 +53,8 @@ def get_top_scores(): #should get the top ten scores and show them from the data
                    FROM Scoreboard
                    ORDER BY player_score DESC
                    LIMIT 10
-                                       );
-                    INSERT or IGNORE INTO Scoreboard (player_name, player_score)
-                    VALUES('KJK', 12),
-                    ('V', 277),
-                    ('King of Pop', 350),
-                    ('Perfect Cell', 1000),
-                    ('Tarnished', 1),
-                    ('The World', 999),
-                    ('Marco', 500),
-                    ('Mississippi', 480),
-                    ('Jason', 130),
-                    ('Melly', 772);  
-                    SELECT * 
-                    FROM Scoreboard
-                    ORDER BY player_score
-                    DESC; 
-                   """)
+                  """)
     scores = cursor.fetchall()
-    
+    print(scores)
     connection.close()
     
