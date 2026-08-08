@@ -7,7 +7,9 @@ def setup_database(): #sets up my database, Kat
                 CREATE TABLE IF NOT EXISTS Scoreboard (
                     player_name TEXT, 
                     player_score INTEGER
-                    );
+                    );               
+                """)
+    cursor.execute("""
                     INSERT or IGNORE INTO Scoreboard (player_name, player_score)
                     VALUES('KJK', 12),
                     ('V', 277),
@@ -19,11 +21,13 @@ def setup_database(): #sets up my database, Kat
                     ('Mississippi', 480),
                     ('Jason', 130),
                     ('Melly', 772);  
+                   """)
+    cursor.execute("""
                     SELECT * 
                     FROM Scoreboard
                     ORDER BY player_score
-                    DESC;                
-                """)
+                    DESC; 
+                   """)
     
     connection.commit()
     connection.close()
