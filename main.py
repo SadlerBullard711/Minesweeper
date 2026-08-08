@@ -1,4 +1,4 @@
-import gameboard, play, scoreboard
+import play, scoreboard
 
 def main():
 
@@ -11,24 +11,25 @@ def main():
         print("Please choose to [Play] the game, view the [Scoreboard], or [Quit]")
 
         action = input("> ")
-
+        action = action.lower()
+        
         actions = ["play", "scoreboard", "quit"]
 
         #check for bad inputs.
-        while action.lower() not in actions:
+        while action not in actions:
             print("Invalid action!")
             action = input("> ")
 
         #if the player chooses to Play, run the game.
-        if action.lower == actions[0]:
+        if action == actions[0]:
             play.play_game()
 
         #else if the player chooses to view the scoreboad, view the scoreboard.
-        elif action.lower == actions[1]:
+        elif action == actions[1]:
             scoreboard.get_top_scores
 
         #else quite the game.
-        else:
+        elif action == actions[2]:
             print("Thank you for playing!")
             return
 
