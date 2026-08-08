@@ -1,4 +1,5 @@
 import time
+from scoreboard import * 
 
 def get_coordinates():
 
@@ -59,7 +60,7 @@ def play_game():
 
                 player_name = input("Enter your name: ")
 
-                add_player_score(player_name, player_score)
+                add_player_name(player_name, player_score)
 
                 break
         elif action == "f":
