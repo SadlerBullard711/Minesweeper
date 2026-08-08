@@ -6,14 +6,17 @@ from scoreboard import add_player_name
 def get_coordinates():
 
     while True:
-        row, column = input("Enter row and column (0-9): ").split()
+        coordinates = input("Enter row, column: ").split()
 
-        if row.isdigit() and column.isdigit():
-            row = int(row)
-            column = int(column)
+        if len(coordinates) == 2:
+            row, column = coordinates
 
-            if 0 <= row <= 9 and 0 <= column <= 9:
-                return row, column
+            if row.isdigit() and column.isdigit():
+                row = int(row)
+                column = int(column)
+
+                if 0 <= row <= 9 and 0 <= column <= 9:
+                    return row, column
 
             print("Invalid coordinates. Please enter numbers from 0-9.")
 
