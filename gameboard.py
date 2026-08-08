@@ -91,7 +91,7 @@ class Board:
                         new_row += f"|{cell.number}|  "
                 #If the cell is flagged, show a flag (?)
                 elif cell.flagged:
-                    new_row += "|(?)|  "
+                    new_row += "|?|  "
                 #If cell in not revealed or flagged, show nothing.
                 else:
                     new_row += "| |  "
