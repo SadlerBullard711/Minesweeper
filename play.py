@@ -1,6 +1,29 @@
 import time
 
-from database import add_player_score
+def get_coordinates():
+
+    while True:
+        row = input("Enter row (0-9): ")
+        column = input("Enter column (0-9): ")
+
+        if row.isdigit() and column.isdigit():
+            row = int(row)
+            columnn = int(column)
+
+            if 0 <= row <= 9 and 0<= column <= 9:
+                return row, column
+
+            print("Invalid coordinates. Please enter numbers from 0-9.")
+
+def get_action(): 
+
+    while True:
+        action = input("Reveal [r] or Flag [f]? ").lower()
+
+        if action == "r" or action == "f":
+            return action
+
+        print("Invalid action. Enter [r] or [f] to flag.")
 
 def play_game():
     board = board()
@@ -36,7 +59,8 @@ def play_game():
 
                 player_name = input("Enter your name: ")
 
-                add_player_score(player_name, player_score)
+                #add_player_score(player_name, player_score)
+
                 break
         elif action == "f":
             cell.flag = not cell.flag
