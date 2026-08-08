@@ -6,7 +6,7 @@ from scoreboard import add_player_name
 def get_coordinates():
 
     while True:
-        coordinates = input("Enter row, column: ").split()
+        coordinates = input("Enter row column: ('ex: 0 0'): ").split()
 
         if len(coordinates) == 2:
             row, column = coordinates
