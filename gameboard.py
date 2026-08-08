@@ -1,9 +1,13 @@
 import random
 
 class Board:
-    #Create the board and set the unrevealed safe cells total.
+    #Create the board and set the unrevealed safe cells total and list of mines.
     def __init__(self):
+        #mine_list keeps track of mine coordinates.
+        self.mine_list = []
+        #unrevealed keeps track of how many unrevealed cells are left.
         self.unrevealed = 0
+        #board is the board itself, a list of lists of cells.
         self.board = []
         for row in range(10):
             new_column = []
@@ -11,6 +15,23 @@ class Board:
             for column in range(10):
                 new_cell = Cell()
                 self.board[row].append(new_cell)
+
+        #add mines to the board.
+        mines = 0
+        for row in range(10):
+            for column in range(10):
+                #stop adding mines after specific number.
+                while mines < 20:
+                    row_num = random.randint(0, 9)
+                    col_num = random.randint(0, 9)
+                    coordinate = [row_num, col_num]
+                    if coordinate in self.mine_list:
+                        row_num = random.randint(0, 9)
+                        col_num = random.randint(0, 9)
+                        coordinate = [row_num, col_num]
+                    mines += 1
+                    self.board[row_num][col_num].mine = True
+
 
     def draw_board(self):
         print("      0    1    2    3    4    5    6    7    8    9   ")
