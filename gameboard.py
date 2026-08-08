@@ -19,14 +19,17 @@ class Board:
                 self.board[row].append(new_cell)
 
         #add mines to the board.
+        #mines is the number of currently placed mines.
         mines = 0
+        mines_max = len(self.board[0]) * len(self.board[0])
+        #mines_num is the number of mines to place.
+        mines_num = 50
+        #if the set number of mines is greater than spaces on the board, shrink the number of mines.
+        if mines_num > mines_max:
+            mines_num = mines_max
         for row in range(len(self.board[row]) - 1):
             for column in range(len(self.board[row]) - 1):
-                #stop adding mines after specific number.
-                mines_max = len(self.board[0]) * len(self.board[0])
-                mines_num = 50
-                if mines_num > mines_max:
-                    mines_num = mines_max
+                #place mines until reaching mines_num
                 while mines < mines_num:
                     row_num = random.randint(0, len(self.board[row]) - 1)
                     col_num = random.randint(0, len(self.board[row]) - 1)
@@ -36,9 +39,13 @@ class Board:
                         row_num = random.randint(0, len(self.board[row]) - 1)
                         col_num = random.randint(0, len(self.board[row]) - 1)
                         coordinate = [row_num, col_num]
+                    #add to the number of placed mines.
                     mines += 1
+                    #subtract from the number of unrevealed safe spaces, as the space is no longer safe.
                     self.unrevealed -= 1
+                    #set the cell to be a mine.
                     self.board[row_num][col_num].mine = True
+                    #update the mine list so mines are not placed on that spot again.
                     self.mine_list.append(coordinate)
                     #add the mine to the cell.number of adjacent cells.
                     print(coordinate)
