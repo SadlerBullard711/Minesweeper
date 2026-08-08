@@ -42,8 +42,10 @@ def play_game():
         cell = board.board[row][column]
 
         if action == "r":
-
-            cell.reval(board)
+            if cell.flagged:
+                print("This cell is flagged. Unflag it before revealing.")
+                continue
+            cell.reveal(board)
 
             if cell.mine:
                 board.draw_board()
