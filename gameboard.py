@@ -5,12 +5,12 @@ class Board:
     def __init__(self):
         #mine_list keeps track of mine coordinates.
         self.mine_list = []
-        #unrevealed keeps track of how many unrevealed cells are left.
-        self.unrevealed = 0
         #board is the board itself, a list of lists of cells.
         self.board = []
         #number of rows and columns must be equal and greater than 1.
         self.size = 10
+        #unrevealed keeps track of how many unrevealed cells are left.
+        self.unrevealed = self.size * self.size
         for row in range(self.size):
             new_column = []
             self.board.append(new_column)
@@ -23,7 +23,7 @@ class Board:
         mines = 0
         mines_max = len(self.board[0]) * len(self.board[0])
         #mines_num is the number of mines to place.
-        mines_num = 1
+        mines_num = 15
         #if the set number of mines is greater than spaces on the board, shrink the number of mines.
         if mines_num > mines_max:
             mines_num = mines_max
