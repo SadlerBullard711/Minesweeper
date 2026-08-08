@@ -1,8 +1,7 @@
 import time
-from gameboard import *
-from scoreboard import * 
+from gameboard import Board
+from scoreboard import add_player_name 
 
-setup_database()
 
 def get_coordinates(): # 
 
@@ -31,9 +30,7 @@ def get_action():
 
 def play_game():
     board = Board()
-    board.setup()
-    board.place_mines()
-
+   
     start_time = time.time()
 
     while True: 
@@ -45,7 +42,8 @@ def play_game():
         cell = board.board[row][column]
 
         if action == "r":
-            cell.revealed = True
+
+            cell.reval(board)
 
             if cell.mine:
                 board.draw_board()
@@ -67,7 +65,7 @@ def play_game():
 
                 break
         elif action == "f":
-            cell.flag = not cell.flag
+            cell.toggle_flag()
 
         else:
             print("Invalid action.")
