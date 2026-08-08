@@ -9,28 +9,63 @@ class Board:
         self.unrevealed = 0
         #board is the board itself, a list of lists of cells.
         self.board = []
-        for row in range(10):
+        #number of rows and columns must be equal and greater than 1.
+        self.size = 10
+        for row in range(self.size):
             new_column = []
             self.board.append(new_column)
-            for column in range(10):
+            for column in range(self.size):
                 new_cell = Cell()
                 self.board[row].append(new_cell)
 
         #add mines to the board.
         mines = 0
-        for row in range(10):
-            for column in range(10):
+        for row in range(len(self.board[row]) - 1):
+            for column in range(len(self.board[row]) - 1):
                 #stop adding mines after specific number.
-                while mines < 20:
-                    row_num = random.randint(0, 9)
-                    col_num = random.randint(0, 9)
+                mines_max = len(self.board[0]) * len(self.board[0])
+                mines_num = 20
+                if mines_num > mines_max:
+                    mines_num = mines_max
+                while mines < mines_num:
+                    row_num = random.randint(0, len(self.board[row]) - 1)
+                    col_num = random.randint(0, len(self.board[row]) - 1)
                     coordinate = [row_num, col_num]
+                    #reroll the coordinate if there is already a mine there.
                     if coordinate in self.mine_list:
-                        row_num = random.randint(0, 9)
-                        col_num = random.randint(0, 9)
+                        row_num = random.randint(0, len(self.board[row]) - 1)
+                        col_num = random.randint(0, len(self.board[row]) - 1)
                         coordinate = [row_num, col_num]
                     mines += 1
+                    self.unrevealed -= 1
                     self.board[row_num][col_num].mine = True
+
+                    #add the mine to the cell.number of adjacent cells.
+                    if (coordinate[0] != 0) and (coordinate[1] != 0):
+                        top_left = self.board[coordinate[0] - 1][coordinate[1] - 1]
+                        top_left.add_number()
+                    if (coordinate[0] != 0) and (coordinate[1] != self.size - 1):
+                        top_right = self.board[coordinate[0] - 1][coordinate[1] + 1]
+                        top_right.add_number()
+                    if (coordinate[0] != 0):
+                        top_middle = self.board[coordinate[0] - 1][coordinate[1]]
+                        top_middle.add_number()
+                    if (coordinate[0] != self.size - 1) and (coordinate[1] != 0):
+                        bottom_left = self.board[coordinate[0] + 1][coordinate[1] - 1]
+                        bottom_left.add_number()
+                    if (coordinate[0] != self.size - 1) and (coordinate[1] != self.size -1):
+                        bottom_right = self.board[coordinate[0] + 1][coordinate[1] + 1]
+                        bottom_right.add_number()
+                    if (coordinate[0] != self.size - 1):
+                        bottom_middle = self.board[coordinate[0] + 1][coordinate[1]]
+                        bottom_middle.add_number()
+                    if (coordinate[1] != 0):
+                        middle_left = self.board[coordinate[0]][coordinate[1] - 1]
+                        middle_left.add_number()
+                    if (coordinate[1] != self.size - 1):
+                        middle_right = self.board[coordinate[0]][coordinate[1] + 1]
+                        middle_right.add_number()
+ 
 
 
     def draw_board(self):
@@ -48,7 +83,7 @@ class Board:
                     else:
                         new_row += f"|{cell.number}|  "
                 #If the cell is flagged, show a flag (?)
-                elif cell.flag:
+                elif cell.flagged:
                     new_row += "|(?)|  "
                 #If cell in not revealed or flagged, show nothing.
                 else:
@@ -62,9 +97,19 @@ class Board:
 class Cell:
     def __init__(self, mine = False, flag = False, revealed = False, number = 0):
         self.mine = mine
-        self.flag = flag
-        self.revealed = revealed
+        self.flagged = flag
+        self.revealed = True
         self.number = number
+
+    def reveal(self, board: Board):
+        board.unrevealed -= 1
+        self.revealed = True
+
+    def toggle_flag(self):
+        self.flagged = not self.flagged
+
+    def add_number(self):
+        self.number += 1
 
 
 board = Board()
