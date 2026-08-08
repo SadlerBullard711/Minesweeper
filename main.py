@@ -21,11 +21,16 @@ def main():
 
         #if the player chooses to Play, run the game.
         if action.lower == actions[0]:
-            
-    
+            play.play_game()
 
+        #else if the player chooses to view the scoreboad, view the scoreboard.
+        elif action.lower == actions[1]:
+            scoreboard.get_top_scores
 
-    pass
+        #else quite the game.
+        else:
+            print("Thank you for playing!")
+            return
 
 if __name__ == "__main__":
     main()
