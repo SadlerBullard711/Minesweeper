@@ -13,7 +13,7 @@ def setup_database(): #sets up my database, Kat
     connection.commit()
     connection.close()
     
-def add_player_name(player_name, player_score): #should allow the user to input a name to go along with their score
+def add_player_name(player_name, player_score): #should allow the user to input a name to go along with their score, Kat
     connection = sqlite3.conncet("Scoreboard.db")
     cursor = connection.cursor()
     
