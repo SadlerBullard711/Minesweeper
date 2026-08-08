@@ -1,7 +1,8 @@
 import time
+from gameboard import *
 from scoreboard import * 
 
-def get_coordinates():
+def get_coordinates(): # 
 
     while True:
         row = input("Enter row (0-9): ")
@@ -27,7 +28,7 @@ def get_action():
         print("Invalid action. Enter [r] or [f] to flag.")
 
 def play_game():
-    board = board()
+    board = Board()
     board.setup()
     board.place_mines()
 

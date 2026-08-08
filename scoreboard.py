@@ -1,12 +1,12 @@
 import sqlite3
 def setup_database(): #sets up my database, Kat
-    connection = sqlite3.conncet("Scoreboard.db")
+    connection = sqlite3.connect("Scoreboard.db")
     cursor = connection.cursor()
 
     cursor.execute("""
                 CREATE TABLE IF NOT EXISTS Scoreboard (
                     player_name TEXT, 
-                    player_score INTERGER
+                    player_score INTEGER
                     )               
                 """)
     
@@ -30,7 +30,7 @@ def get_top_scores(): #should get the top ten scores and show them from the data
     
     cursor.execute(""" 
                    SELECT player_name, player_score
-                   FROM scores
+                   FROM Scoreboard
                    ORDER BY player_score DESC
                    LIMIT 10
                    """)
