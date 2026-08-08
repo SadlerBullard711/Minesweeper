@@ -103,11 +103,11 @@ class Board:
 
 
 class Cell:
-    def __init__(self, mine = False, flag = False, revealed = False, number = 0):
-        self.mine = mine
-        self.flagged = flag
-        self.revealed = True
-        self.number = number
+    def __init__(self):
+        self.mine = False
+        self.flagged = False
+        self.revealed = False
+        self.number = 0
 
     def reveal(self, board: Board):
         board.unrevealed -= 1
