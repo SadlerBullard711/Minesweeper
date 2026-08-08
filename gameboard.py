@@ -24,7 +24,7 @@ class Board:
             for column in range(len(self.board[row]) - 1):
                 #stop adding mines after specific number.
                 mines_max = len(self.board[0]) * len(self.board[0])
-                mines_num = 20
+                mines_num = 50
                 if mines_num > mines_max:
                     mines_num = mines_max
                 while mines < mines_num:
@@ -32,15 +32,16 @@ class Board:
                     col_num = random.randint(0, len(self.board[row]) - 1)
                     coordinate = [row_num, col_num]
                     #reroll the coordinate if there is already a mine there.
-                    if coordinate in self.mine_list:
+                    while coordinate in self.mine_list:
                         row_num = random.randint(0, len(self.board[row]) - 1)
                         col_num = random.randint(0, len(self.board[row]) - 1)
                         coordinate = [row_num, col_num]
                     mines += 1
                     self.unrevealed -= 1
                     self.board[row_num][col_num].mine = True
-
+                    self.mine_list.append(coordinate)
                     #add the mine to the cell.number of adjacent cells.
+                    print(coordinate)
                     if (coordinate[0] != 0) and (coordinate[1] != 0):
                         top_left = self.board[coordinate[0] - 1][coordinate[1] - 1]
                         top_left.add_number()
