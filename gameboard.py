@@ -76,7 +76,14 @@ class Board:
 
 
     def draw_board(self):
-        print("      0    1    2    3    4    5    6    7    8    9   ")
+
+        #top_row is the first row of text that gives the column numbers.
+        top_row = "      "
+
+        for x in range(self.size):
+            top_row += str(x) + "    "
+
+        print(top_row)
         
         #For each row in the column, show each cell.
         for row in range(len(self.board)):
