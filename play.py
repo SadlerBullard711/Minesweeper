@@ -18,7 +18,7 @@ def get_coordinates():
                 if 0 <= row <= 9 and 0 <= column <= 9:
                     return row, column
 
-            print("Invalid coordinates. Please enter numbers from 0-9.")
+        print("Invalid coordinates. Please enter numbers from 0-9.")
 
 def get_action(): 
 
