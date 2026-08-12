@@ -4,6 +4,14 @@ from scoreboard import add_player_name
 
 
 def get_coordinates():
+    """Get and validate a row and column entered by the player.
+
+    Prompts the player to enter two numbers between 0 and 9.
+    Continues asking until valid coordinates are entered.
+
+    Returns:
+        tuple: The row and column as integers.
+"""
 
     while True:
         coordinates = input("Enter row and column: ('ex: 0 0'): ").split()
@@ -20,7 +28,15 @@ def get_coordinates():
 
         print("Invalid coordinates. Please enter numbers from 0-9.")
 
-def get_action(): 
+def get_action():
+    """Get the player's requested action.
+
+    Prompts the player to choose between revealing a cell ('r')
+    or flagging a cell ('f').
+
+    Returns:
+        str: 'r' to reveal or 'f' to flag.
+    """
 
     while True:
         action = input("Reveal [r] or Flag [f]? ").lower()
@@ -31,6 +47,15 @@ def get_action():
         print("Invalid action. Enter [r] or [f] to flag.")
 
 def play_game():
+    """Run a complete game of Minesweeper. 
+    
+    Creates a game board and repeatedly allows the player to
+    reveal or flag cells. The game ends when the player hits
+    a mine or reveals all safe cells. 
+
+    A score is calculated based on the player's completion time
+    and saved to the SQLite scoreboard when the player wins.
+    """
     board = Board()
    
     start_time = time.time()
@@ -82,6 +107,18 @@ def play_game():
 
 
 def reveal_adjacent(board: Board, coordinate): #coordinate is a list [row, column]
+    """Recursively reveal safe cells adjacent to an empty cell.
+    
+    Checks the cells surrounding the given coordinate. Safe, 
+    unrevealed cells are revealed. If an adjacent cell has no
+    neighboring mines, this function calls itself recursively
+    to reveal that cell's neighbors. 
+
+    Args:
+        board(Board): The current Minesweeper game board.
+        coordinate (list): THe row and column of the cell being checked.
+    """
+
     if (coordinate[0] != 0) and (coordinate[1] != 0):
         top_left = board.board[coordinate[0] - 1][coordinate[1] - 1]
         if not top_left.revealed and not top_left.mine:
