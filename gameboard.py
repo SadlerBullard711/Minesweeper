@@ -89,7 +89,7 @@ class Board:
         for row in range(len(self.board)):
             new_row = f"{row}|   "
             for column in range(len(self.board[row])):
-                cell = self.board[column][row]
+                cell = self.board[row][column]
                 #If the cell is revealed, show the number or mine.
                 if cell.revealed:
                     if cell.mine:

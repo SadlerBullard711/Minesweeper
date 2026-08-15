@@ -7,7 +7,7 @@ def main():
     setup_database()
 
     #Give the player the choice to play, view scoreboad, or quit.
-    print("Welcome to Minesweeper!")
+    print("Welcome to Minefinder!")
 
     while True:
         print("Please choose to [Play] the game, view the [Scoreboard], or [Quit]")
